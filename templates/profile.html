@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}Medical Profile{% endblock %}{% block content %}
+<div class="form-card wide-card mx-auto"><h2>Medical Profile</h2><p class="text-muted">Enter accurate information. Use the visibility checkboxes to control the QR emergency page.</p>
+<form method="post">
+ <div class="row g-3">
+ <div class="col-md-6"><label class="form-label">Age</label><input class="form-control" name="age" value="{{ p.age }}"></div>
+ <div class="col-md-6"><label class="form-label">Blood Group</label><select class="form-select" name="blood_group"><option value="">Select</option>{% for b in ['A+','A-','B+','B-','AB+','AB-','O+','O-'] %}<option {% if p.blood_group==b %}selected{% endif %}>{{ b }}</option>{% endfor %}</select></div>
+ <div class="col-12"><label class="form-label">Drug Allergies (reported)</label><textarea class="form-control" rows="2" name="allergies">{{ p.allergies }}</textarea></div>
+ <div class="col-12"><label class="form-label">Current Medicines (general notes)</label><textarea class="form-control" rows="2" name="medicines">{{ p.medicines }}</textarea></div>
+ <div class="col-12"><h5 class="mb-1">Medicine Schedule</h5><p class="small text-muted">Enter the medicine details exactly as prescribed. You can add more medicines in a future version.</p></div>
+ <div class="col-md-6"><label class="form-label">Medicine Name</label><input class="form-control" name="medicine_name" value="{{ p.medicine_name or '' }}" placeholder="e.g. Paracetamol"></div>
+ <div class="col-md-6"><label class="form-label">Dose / Strength</label><input class="form-control" name="medicine_dose" value="{{ p.medicine_dose or '' }}" placeholder="e.g. 500 mg"></div>
+ <div class="col-md-6"><label class="form-label">Frequency</label><input class="form-control" name="medicine_frequency" value="{{ p.medicine_frequency or '' }}" placeholder="e.g. Once daily / Twice daily"></div>
+ <div class="col-md-6"><label class="form-label">Time</label><input class="form-control" name="medicine_time" value="{{ p.medicine_time or '' }}" placeholder="e.g. After breakfast / 8:00 PM"></div>
+ <div class="col-12"><label class="form-label">Medical History / Conditions</label><textarea class="form-control" rows="2" name="history">{{ p.history }}</textarea></div>
+ <div class="col-md-4"><label class="form-label">Emergency Contact Name</label><input class="form-control" name="emergency_name" value="{{ p.emergency_name }}"></div>
+ <div class="col-md-4"><label class="form-label">Contact Phone</label><input class="form-control" name="emergency_phone" value="{{ p.emergency_phone }}"></div>
+ <div class="col-md-4"><label class="form-label">Relationship</label><input class="form-control" name="emergency_relation" value="{{ p.emergency_relation }}"></div>
+ </div>
+ <hr><h5>Show on QR emergency page</h5><p class="small text-muted">Anyone with your QR link may see the selected information.</p>
+ <div class="row g-2">
+ {% for key,label in [('show_age','Age'),('show_blood_group','Blood group'),('show_allergies','Drug allergies'),('show_medicines','Current medicines'),('show_history','Medical history'),('show_contact','Emergency contact')] %}
+ <div class="col-md-4"><label class="form-check"><input class="form-check-input" type="checkbox" name="{{ key }}" {% if p[key] %}checked{% endif %}> {{ label }}</label></div>
+ {% endfor %}
+ </div>
+ <div class="mt-4 d-flex gap-2"><button class="btn btn-primary">Save Profile</button><a class="btn btn-outline-secondary" href="{{ url_for('dashboard') }}">Cancel</a></div>
+</form></div>{% endblock %}

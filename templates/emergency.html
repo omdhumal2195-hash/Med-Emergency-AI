@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Emergency Medical Profile{% endblock %}{% block content %}
+<div class="emergency-head rounded-4 p-4 text-white"><span class="badge bg-light text-danger">MEDICAL EMERGENCY PROFILE</span><h1 class="mt-3">{{ name }}</h1><p class="mb-0">Patient-provided information · Last updated: {{ updated }}</p></div>
+<div class="row g-3 mt-1">
+ {% for label,value in details.items() %}{% if value %}<div class="col-md-6"><div class="feature"><div class="text-muted small">{{ label }}</div><div class="fs-5 fw-semibold">{{ value }}</div></div></div>{% endif %}{% endfor %}
+</div>
+{% if contact %}<div class="feature mt-3"><h4>Emergency Contact</h4><p class="mb-1 fw-semibold">{{ contact.name }} {% if contact.relation %}({{ contact.relation }}){% endif %}</p>{% if contact.phone %}<a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>{% endif %}</div>{% endif %}
+<div class="feature mt-3"><h4>AI-Generated Summary</h4><p>{{ summary }}</p></div>
+<div class="alert alert-warning mt-3 small">Information is supplied by the patient and may be incomplete or outdated. This page is not a diagnosis or treatment instruction. In an emergency, contact local emergency services and verify information with the patient/caregiver or a qualified healthcare professional.</div>
+{% endblock %}

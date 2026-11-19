@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}AI Summary{% endblock %}{% block content %}
+<div class="form-card wide-card mx-auto"><span class="badge text-bg-primary">SCIKIT-LEARN · TF-IDF</span><h2 class="mt-2">AI Medical Summary</h2><p class="text-muted small">Last profile update: {{ updated }}</p>
+<div class="alert alert-danger"><strong>Allergy alert:</strong> {{ p.allergies or 'No allergy information entered — verify with the patient.' }}</div>
+<div class="alert alert-info"><strong>Blood group:</strong> {{ p.blood_group or 'Not provided' }}</div>
+{% if p.medicine_name %}<div class="feature mb-3"><h5>Medication Schedule</h5><p class="mb-1"><strong>{{ p.medicine_name }}</strong></p><p class="mb-0">Dose: {{ p.medicine_dose or 'Not provided' }} · Frequency: {{ p.medicine_frequency or 'Not provided' }} · Time: {{ p.medicine_time or 'Not provided' }}</p></div>{% endif %}
+<h5>AI-generated overview</h5><p>{{ summary }}</p>
+<div class="alert alert-warning small">This is an automated summary of information entered by the patient. It may omit details and must not be used for diagnosis, treatment or medication decisions. Verify the original records.</div>
+<a class="btn btn-primary" href="{{ url_for('dashboard') }}">Back to Dashboard</a></div>
+{% endblock %}

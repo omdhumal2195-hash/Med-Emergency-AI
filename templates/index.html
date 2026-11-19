@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Med-Emergency QR{% endblock %}
+{% block content %}
+<section class="hero p-4 p-md-5 rounded-4 text-white">
+ <div class="row align-items-center"><div class="col-lg-8">
+ <span class="badge bg-light text-primary mb-3">AI + QR CODE</span>
+ <h1 class="display-5 fw-bold">Your essential medical details, ready when seconds matter.</h1>
+ <p class="lead">Store key medical information, create a personal QR code and make selected emergency details easier to access.</p>
+ <a class="btn btn-light btn-lg me-2" href="{{ url_for('register') }}">Get Started</a>
+ <a class="btn btn-outline-light btn-lg" href="{{ url_for('login') }}">Login</a>
+ </div><div class="col-lg-4 text-center display-1 mt-4 mt-lg-0">✚</div></div>
+</section>
+<div class="row g-3 mt-3">
+ {% for icon,title,desc in [('▦','QR Emergency Access','A unique QR code opens selected emergency details.'),('✦','AI Medical Summary','TF-IDF NLP creates a short summary of entered facts.'),('♡','Patient-Controlled Privacy','Choose which profile fields appear on the QR page.'),('☎','Emergency Contacts','Keep a designated contact visible when selected.') ] %}
+ <div class="col-md-6 col-lg-3"><div class="feature h-100"><div class="fs-2 text-primary">{{ icon }}</div><h5>{{ title }}</h5><p class="text-muted mb-0">{{ desc }}</p></div></div>
+ {% endfor %}
+</div>
+<p class="small text-muted mt-4">For educational demonstration only. This system is not a substitute for emergency services or professional medical assessment.</p>
+{% endblock %}
